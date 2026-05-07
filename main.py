@@ -9,13 +9,13 @@ ROI_POINTS = [
         [475, 300], # 우측 위
         [100, 300] # 좌측 위
 ]
-
 THRESHOLD = 25
 
 # straight = preprocessor.img2rgb(cv2.imread('straight.png'))
 # plotROI(ROI_POINTS, straight)
 
 cap = cv2.VideoCapture('toy-project.mp4')
+fps = cap.get(cv2.CAP_PROP_FPS)
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -30,7 +30,7 @@ while cap.isOpened():
     cv2.imshow('BEV', bev_frame)
     cv2.imshow('Masking', mask_frame)
 
-    if cv2.waitKey(41) & 0xFF == ord('q'):
+    if cv2.waitKey(round(1000 / fps)) & 0xFF == ord('q'):
         break
 
 cap.release()
