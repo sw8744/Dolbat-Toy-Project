@@ -23,7 +23,7 @@ while cap.isOpened():
         break
     
     bev_frame = preprocessor.bev(frame, ROI_POINTS)
-    gray = cv2.cvtColor(bev_frame, cv2.COLOR_BGR2GRAY)
+    gray = preprocessor.gray(bev_frame)
     mask_frame = preprocessor.mask(gray, THRESHOLD)
 
     cv2.imshow('Original', drawROI(frame, ROI_POINTS))
